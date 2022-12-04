@@ -4,9 +4,9 @@ package org.example;
 public class Colour {
 
 
-    private float red;
-    private float green;
-    private float blue;
+    private final int red;
+    private final int green;
+    private final int blue;
 
     public Colour(float r, float g, float b) throws IllegalArgumentException {
         if (r<0 || r>1) {
@@ -47,19 +47,21 @@ public class Colour {
 
 
     public float getRed() {
-        return red;
+        return this.red;
     }
 
 
     public float getGreen() {
-        return green;
+        return this.green;
     }
 
 
     public float getBlue() {
-        return blue;
+        return this.blue;
     }
 
-
+    public int[] getFullRGB() {
+        return new int[]{this.red, this.green, this.blue};
+    }
 }
 

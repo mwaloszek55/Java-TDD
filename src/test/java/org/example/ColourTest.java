@@ -86,7 +86,65 @@ class ColourTest {
         Assertions.assertEquals("Cannot go below 0 bits", exception2.getMessage());
     }
 
+    @Test
+    void Test_random_colours1() {
+        float r = 0.5f;
+        float g = 1.0f;
+        float b = 0.2f;
+        Colour colour1 = new Colour(r, g, b);
+        Assertions.assertArrayEquals(ColourConversion(r, g, b), colour1.getFullRGB());
+    }
 
+    @Test
+    void Test_random_colours2() {
+        float r = 0.3f;
+        float g = 0.5f;
+        float b = 0.6f;
+        Colour colour1 = new Colour(r, g, b);
+        Assertions.assertArrayEquals(ColourConversion(r, g, b), colour1.getFullRGB());
+    }
 
+    @Test
+    void Test_random_colours3() {
+        float r = 1.0f;
+        float g = 1.0f;
+        float b = 0.4f;
+        Colour colour1 = new Colour(r, g, b);
+        Assertions.assertArrayEquals(ColourConversion(r, g, b), colour1.getFullRGB());
+    }
+
+    @Test
+    void Test_random_colours4() {
+        int bits = 163424;
+        Colour colour1 = new Colour(bits);
+        int r = rgb_bits(bits,1);
+        int g = rgb_bits(bits,9);
+        int b = rgb_bits(bits,17);
+        int[] is = {r, g, b};
+        Assertions.assertArrayEquals(is, colour1.getFullRGB());
+    }
+
+    @Test
+    void Test_random_colours5() {
+        int bits = 2342;
+        Colour colour1 = new Colour(bits);
+        int r = rgb_bits(bits,1);
+        int g = rgb_bits(bits,9);
+        int b = rgb_bits(bits,17);
+        int[] is = {r, g, b};
+        Assertions.assertArrayEquals(is, colour1.getFullRGB());
+    }
+
+    public int[] ColourConversion(float r, float g, float b) {
+        int Nr = (int) r * 255;
+        int Ng = (int) g * 255;
+        int Nb = (int) b * 255;
+        return new int[]{Nr, Ng, Nb};
+    }
+
+    static int rgb_bits(int rgb_value, int rgb_indicator) {
+        return (((1 << 8) - 1) & (rgb_value >> (rgb_indicator - 1)));
+    }
 
 }
+
