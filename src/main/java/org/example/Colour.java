@@ -60,7 +60,7 @@ public class Colour {
         return this.blue;
     }
 
-    public int[] getFullRGB() {
+    public int[] getRGB() {
         return new int[]{this.red, this.green, this.blue};
     }
 }

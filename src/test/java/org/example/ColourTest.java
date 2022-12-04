@@ -92,7 +92,7 @@ class ColourTest {
         float g = 1.0f;
         float b = 0.2f;
         Colour colour1 = new Colour(r, g, b);
-        Assertions.assertArrayEquals(ColourConversion(r, g, b), colour1.getFullRGB());
+        Assertions.assertArrayEquals(ColourConversion(r, g, b), colour1.getRGB());
     }
 
     @Test
@@ -101,7 +101,7 @@ class ColourTest {
         float g = 0.5f;
         float b = 0.6f;
         Colour colour1 = new Colour(r, g, b);
-        Assertions.assertArrayEquals(ColourConversion(r, g, b), colour1.getFullRGB());
+        Assertions.assertArrayEquals(ColourConversion(r, g, b), colour1.getRGB());
     }
 
     @Test
@@ -110,7 +110,7 @@ class ColourTest {
         float g = 1.0f;
         float b = 0.4f;
         Colour colour1 = new Colour(r, g, b);
-        Assertions.assertArrayEquals(ColourConversion(r, g, b), colour1.getFullRGB());
+        Assertions.assertArrayEquals(ColourConversion(r, g, b), colour1.getRGB());
     }
 
     @Test
@@ -121,7 +121,7 @@ class ColourTest {
         int g = rgb_bits(bits,9);
         int b = rgb_bits(bits,17);
         int[] is = {r, g, b};
-        Assertions.assertArrayEquals(is, colour1.getFullRGB());
+        Assertions.assertArrayEquals(is, colour1.getRGB());
     }
 
     @Test
@@ -132,8 +132,26 @@ class ColourTest {
         int g = rgb_bits(bits,9);
         int b = rgb_bits(bits,17);
         int[] is = {r, g, b};
-        Assertions.assertArrayEquals(is, colour1.getFullRGB());
+        Assertions.assertArrayEquals(is, colour1.getRGB());
     }
+
+
+    @Test
+    void Test_ObjectsEqual() {
+        int bits = 255;
+        Colour colour1 = new Colour(bits);
+        Colour colour2 = new Colour(1.0f, 0f, 0f);
+        Assertions.assertArrayEquals(colour1.getRGB(), colour2.getRGB());
+    }
+
+    @Test
+    void Test_ObjectsEqual2() {
+        int bits = 312312;
+        Colour colour1 = new Colour(bits);
+        Colour colour2 = new Colour(bits);
+        Assertions.assertArrayEquals(colour1.getRGB(), colour2.getRGB());
+    }
+
 
     public int[] ColourConversion(float r, float g, float b) {
         int Nr = (int) r * 255;
@@ -145,6 +163,5 @@ class ColourTest {
     static int rgb_bits(int rgb_value, int rgb_indicator) {
         return (((1 << 8) - 1) & (rgb_value >> (rgb_indicator - 1)));
     }
-
 }
 
